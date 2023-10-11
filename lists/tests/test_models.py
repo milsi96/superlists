@@ -30,7 +30,7 @@ class LIstAndItemModelTest(TestCase):
     self.assertEqual(first_saved_item.list, list_)
     self.assertEqual(second_saved_item.text, 'Item the second')
     self.assertEqual(second_saved_item.list, list_)
-  
+
   def test_cannot_save_an_empty_list(self):
     list_ = List.objects.create()
     item = Item(list=list_, text='')

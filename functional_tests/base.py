@@ -21,7 +21,7 @@ class FuncionalTest(StaticLiveServerTestCase):
   def wait_for_row_in_list_table(self, row_text: str):
     start_time = time.time()
     while True:
-      try: 
+      try:
         table = self.browser.find_element(By.ID, 'id_list_table')
         rows = table.find_elements(By.TAG_NAME, 'tr')
         self.assertIn(row_text, [row.text for row in rows])
@@ -34,7 +34,7 @@ class FuncionalTest(StaticLiveServerTestCase):
   def wait_for(self, fn):
     start_time = time.time()
     while True:
-      try: 
+      try:
         return fn()
       except (AssertionError, WebDriverException) as e:
         if time.time() - start_time > MAX_WAIT:

@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from .base import FuncionalTest
 
 class ItemValidationTest(FuncionalTest):
-  
+
   def test_cannot_add_empty_list(self):
     # Edith goes to the home page and accidentally tries to sumbit
     # an empty list item. She hits Enter on the empty input box
@@ -21,7 +21,7 @@ class ItemValidationTest(FuncionalTest):
     self.browser.find_element(By.ID, 'id_new_item').send_keys('Buy milk')
     self.browser.find_element(By.ID, 'id_new_item').send_keys(Keys.ENTER)
     self.wait_for_row_in_list_table('1: Buy milk')
-    
+
     # Perversely, she now decides to submit a second blank list item
     self.browser.find_element(By.ID, 'id_new_item').send_keys(Keys.ENTER)
 
