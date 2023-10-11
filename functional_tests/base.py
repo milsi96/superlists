@@ -9,6 +9,10 @@ MAX_WAIT: int = 10
 
 
 class FuncionalTest(StaticLiveServerTestCase):
+
+  def get_item_input_box(self):
+    return self.browser.find_element(By.ID, 'id_text')
+
   def setUp(self):
     self.browser = webdriver.Firefox()
     staging_server = os.environ.get('STAGING_SERVER')
