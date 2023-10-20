@@ -4,6 +4,6 @@ virtualenv
 __pycache__
 *.pyc
 logs
-ubuntu-*
+superlists-amsterdam*
 .env
 .DS_Store
