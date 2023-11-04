@@ -47,7 +47,7 @@ class LoginTest(FuncionalTest):
     self.assertIn(TEST_EMAIL, navbar.text)
 
     # Now she logs out
-    self.browser.find_element(By.LINK_TEXT, 'Log out')
+    self.browser.find_element(By.LINK_TEXT, 'Log out').click()
 
     # She is logged out
     self.wait_for(
