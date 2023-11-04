@@ -17,7 +17,7 @@ class LoginTest(FuncionalTest):
     # and notices a "Log in" section in the navbar for the first time
     # It's telling her to enter her email address, so she does
     if self.staging_server:
-      test_email = 'superlist.user@yahoo.com'
+      test_email = 'edith.testuser@outlook.com'
     else:
       test_email = 'edith@example.com'
 
@@ -64,10 +64,10 @@ class LoginTest(FuncionalTest):
 
     email_id = None
     start = time.time()
-    inbox = poplib.POP3_SSL('pop.mail.yahoo.com')
+    inbox = poplib.POP3_SSL('outlook.office365.com', port=poplib.POP3_SSL_PORT)
     try:
       inbox.user(test_email)
-      inbox.pass_(os.environ['YAHOO_PASSWORD'])
+      inbox.pass_(os.environ['OUTLOOK_PASSWORD'])
       while time.time() - start < 60:
         # get 10 newest messages
         count, _ = inbox.stat()
