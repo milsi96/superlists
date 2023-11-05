@@ -7,13 +7,14 @@ def _get_manage_dot_py(host):
 
 def reset_database(host):
   manage_dot_py = _get_manage_dot_py(host)
-  with settings(host_string=f'elspeth@{host}'):
+  with settings(host_string=f'elspeth@{host}', key_filename=["superlists-amsterdam"]):
     run(f'{manage_dot_py} flush --noinput')
 
 
 def _get_server_env_vars(host):
   env_lines = run(f'cat ~/sites/{host}/.env').splitlines()
   return dict(l.split('=') for l in env_lines if l)
+
 
 def create_session_on_server(host, email):
   manage_dot_py = _get_manage_dot_py(host)
