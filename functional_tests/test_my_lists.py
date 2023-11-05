@@ -1,5 +1,5 @@
 from accounts.models import User
-from functional_tests.base import FuncionalTest
+from .base import FuncionalTest
 from django.contrib.sessions.backends.db import SessionStore
 from django.contrib.auth import BACKEND_SESSION_KEY, SESSION_KEY, get_user_model
 from django.conf import settings
