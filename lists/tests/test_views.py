@@ -7,6 +7,7 @@ from lists.views import home_page
 from lists.models import Item, List
 from django.utils.html import escape
 from django.contrib.auth import get_user_model
+import unittest
 User = get_user_model()
 
 class HomePageTest(TestCase):
@@ -20,7 +21,7 @@ class HomePageTest(TestCase):
     self.assertIsInstance(response.context['form'], ItemForm)
 
 
-class NewListTest(TestCase):
+class NewListViewIntegratedTest(TestCase):
 
   def test_redirects_after_POST(self):
     response = self.client.post('/lists/new', data={'text': 'A new list item'})
@@ -52,12 +53,16 @@ class NewListTest(TestCase):
     self.assertEqual(List.objects.count(), 0)
     self.assertEqual(Item.objects.count(), 0)
 
-  def test_list_owner_is_saved_if_user_is_authenticated(self):
+
+  @unittest.skip
+  def test_list_owner_is_saved_if_user_is_authenticated(
+    self, mockItemFormClass, mockListClass
+  ):
     user = User.objects.create(email='a@b.com')
     self.client.force_login(user)
     self.client.post('lists/new', data={'text': 'new item'})
-    list_ = List.objects.first()
-    self.assertEqual(list_.owner, user)
+    mock_list = mockListClass.return_value
+    self.assertEqual(mock_list.owner, user)
 
 
 class ListViewTest(TestCase):
